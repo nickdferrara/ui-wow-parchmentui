@@ -21,8 +21,9 @@ local function PrintStatus()
     for index = 1, #report do
         local entry = report[index]
         local label = L["STATUS_" .. entry.status:upper()]
-        if entry.error then
-            ns.Print(L.STATUS_LINE_ERROR:format(entry.id, label, entry.error))
+        local detail = entry.error or entry.manager
+        if detail then
+            ns.Print(L.STATUS_LINE_DETAIL:format(entry.id, label, detail))
         else
             ns.Print(L.STATUS_LINE:format(entry.id, label))
         end

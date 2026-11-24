@@ -11,6 +11,7 @@ Core/Defaults.lua [AllowLoadGameType camelot]
 Core/Database.lua [AllowLoadGameType camelot]
 Core/Events.lua [AllowLoadGameType camelot]
 Core/Combat.lua [AllowLoadGameType camelot]
+Core/Compat.lua [AllowLoadGameType camelot]
 Core/Windows.lua [AllowLoadGameType camelot]
 Core/Startup.lua [AllowLoadGameType camelot]
 
