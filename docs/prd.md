@@ -125,12 +125,12 @@ in `docs/frame-audit.md`.
 |---|---|---|---|
 | P0 | Character Sheet | `CharacterFrame`, `PaperDollFrame` | Includes reputation and currency tabs |
 | P0 | Spellbook | `PlayerSpellsFrame` | Load on demand (`Blizzard_PlayerSpells`) |
-| P0 | Talents | `PlayerSpellsFrame.TalentsFrame` | Uses `C_Traits`; legacy panel unlocks at level 25 |
+| P0 | Talents | `PlayerSpellsFrame.TalentsFrame` | Uses `C_Traits` |
 | P0 | Group Finder / LFG | `LFGParentFrame` | Vanilla-style group finder. `LFDFrame` functions were removed in 1.60.1 *(documented)* |
 | P1 | Skills / Professions list | `SkillsFrame` | |
 | P1 | Social | `SocialUIFrame`, `FriendsFrame` | Forever replaces part of the Friends window |
 | P1 | Quest Log | To be identified | |
-| P1 | Legacy System | To be identified | Forever's replacement for achievements, opened by `ToggleLegacySystemUI` *(documented)* |
+| P1 | Legacy System | `LegacySystemFrame` | Forever's replacement for achievements. Load on demand. Unlocks with the first Legacy Point, likely at level 25. Its Trees section is a separate talent-style tree *(documented)* |
 | P2 | Merchant, Bank, Mail | `MerchantFrame`, `BankFrame`, `MailFrame` | |
 | P2 | Professions crafting, Auction House | To be identified | |
 
