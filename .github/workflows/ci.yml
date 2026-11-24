@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+env:
+  LUACHECK_VERSION: 1.2.0-1
+  BUSTED_VERSION: 2.2.0-1
+  STYLUA_VERSION: 2.6.0
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Lua 5.1 and LuaRocks
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lua5.1 liblua5.1-0-dev luarocks
+
+      - name: Install luacheck, busted and stylua
+        run: |
+          sudo luarocks --lua-version 5.1 install luacheck "$LUACHECK_VERSION"
+          sudo luarocks --lua-version 5.1 install busted "$BUSTED_VERSION"
+          sudo npm install --global "@johnnymorganz/stylua-bin@$STYLUA_VERSION"
+
+      - name: Lint
+        run: make lint
+
+      - name: Format check
+        run: make format-check
+
+      - name: Unit tests
+        run: make test
+
+      - name: TOC check
+        run: make toc-check
+
+  package:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Packaging dry run
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -d
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ParchmentUI
+          path: .release/*.zip
+          # .release is a hidden folder, which the upload step skips by default.
+          include-hidden-files: true
+          if-no-files-found: error
