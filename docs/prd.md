@@ -124,10 +124,10 @@ in `docs/frame-audit.md`.
 | Priority | Window | Expected frame | Notes |
 |---|---|---|---|
 | P0 | Character Sheet | `CharacterFrame`, `PaperDollFrame` | Includes reputation and currency tabs |
-| P0 | Spellbook | `PlayerSpellsFrame` | Load on demand (`Blizzard_PlayerSpells`) |
+| P0 | Spellbook | `PlayerSpellsFrame` | Load on demand (`Blizzard_PlayerSpells`). 1154 x 883 at full size, see open question 6 |
 | P0 | Talents | `PlayerSpellsFrame.TalentsFrame` | Uses `C_Traits` |
 | P0 | Group Finder / LFG | `LFGParentFrame` | Vanilla-style group finder. `LFDFrame` functions were removed in 1.60.1 *(documented)* |
-| P1 | Skills / Professions list | `SkillsFrame` | |
+| P1 | Skills / Professions list | `SkillsFrame` | A tab of the Character Sheet, not a separate window *(from source)* |
 | P1 | Social | `SocialUIFrame`, `FriendsFrame` | Forever replaces part of the Friends window |
 | P1 | Quest Log | To be identified | |
 | P1 | Legacy System | `LegacySystemFrame` | Forever's replacement for achievements. Load on demand. Unlocks with the first Legacy Point, likely at level 25. Its Trees section is a separate talent-style tree *(documented)* |
@@ -307,4 +307,8 @@ Repository conventions:
 4. Is the right-side dock position fixed, or should players be able to drag windows and have the
    position remembered?
 5. Does the Forever panel manager allow two side-by-side panels on the right without taint? The
-   M0 spike answers this, and FR-7 depends on it.
+   M0 spike answers this, and FR-7 depends on it. The source review in `docs/frame-audit.md`
+   shows the manager only places panels left to right from the left edge.
+6. The Spellbook and Talents window is 1154 by 883 at full size and prefers the center of the
+   screen. Should it be docked only in its minimized mode, be skinned as parchment but left
+   where the game puts it, or be scaled down to fit a docked scroll?
