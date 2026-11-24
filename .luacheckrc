@@ -14,6 +14,7 @@ files["ParchmentUI"] = {
     read_globals = {
         "C_AddOns",
         "CreateFrame",
+        "GameFontNormal",
         "GetBuildInfo",
         "GetLocale",
         "InCombatLockdown",

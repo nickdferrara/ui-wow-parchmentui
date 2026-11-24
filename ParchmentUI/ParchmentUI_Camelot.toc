@@ -31,4 +31,5 @@ Layout/Tracker.lua [AllowLoadGameType camelot]
 
 Options/Audit.lua [AllowLoadGameType camelot]
 Options/Model.lua [AllowLoadGameType camelot]
+Options/Preview.lua [AllowLoadGameType camelot]
 Options/Slash.lua [AllowLoadGameType camelot]

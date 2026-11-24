@@ -72,6 +72,9 @@ local commands = {
     status = PrintStatus,
     options = PrintOptions,
     window = HandleWindow,
+    preview = function()
+        ns.Preview.Toggle()
+    end,
     audit = function()
         PrintLines(ns.Audit.Collect())
     end,
@@ -88,6 +91,7 @@ local function PrintHelp()
         L.HELP_OPTIONS,
         L.HELP_OPTION,
         L.HELP_WINDOW,
+        L.HELP_PREVIEW,
         L.HELP_STATUS,
         L.HELP_AUDIT,
         L.HELP_RESET,
