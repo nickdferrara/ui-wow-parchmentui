@@ -4,6 +4,7 @@ move-folders:
   ParchmentUI/ParchmentUI: ParchmentUI
 
 ignore:
+  - art
   - docs
   - tests
   - Makefile
