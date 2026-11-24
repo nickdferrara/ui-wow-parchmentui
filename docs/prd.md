@@ -261,7 +261,7 @@ Repository conventions:
 |---|---|---|
 | M0 | Foundation and spike | Repository, CI and environment in place. Frame audit written from the live client. Positioning spike proves a P0 window can dock right with no taint. |
 | M1 | Theme and Character Sheet | Parchment art, fonts, shared widget skinners, Character Sheet fully skinned and docked. |
-| M2 | Spellbook and Talents | `PlayerSpellsFrame` skinned, including the talent tree and legacy panel. |
+| M2 | Spellbook and Talents | `PlayerSpellsFrame` skinned, including the talent tree. |
 | M3 | Group Finder | LFG window skinned and docked. |
 | M4 | Settings and polish | Options panel, themes, animation, Dialogue UI theme matching, multi-window stacking. |
 | M5 | Release 1.0 | P0 windows pass the full acceptance checklist. Published. |
