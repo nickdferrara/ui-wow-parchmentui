@@ -138,6 +138,21 @@ function Stub.Install(options)
         end
     end
 
+    -- Advances every running OnUpdate handler by one rendered frame.
+    function state.Tick(elapsed)
+        for _, frame in ipairs(state.frames) do
+            frame:Run("OnUpdate", elapsed)
+        end
+    end
+
+    function state.OnUpdateCount()
+        local count = 0
+        for _, frame in ipairs(state.frames) do
+            count = count + frame:HookCount("OnUpdate")
+        end
+        return count
+    end
+
     -- Loads the addon files in TOC order, the way the client does, and returns the namespace.
     function state.Load()
         local ns = {}
