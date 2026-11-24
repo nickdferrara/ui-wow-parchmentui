@@ -1,0 +1,14 @@
+package-as: ParchmentUI
+
+move-folders:
+  ParchmentUI/ParchmentUI: ParchmentUI
+
+ignore:
+  - docs
+  - tests
+  - Makefile
+  - README.md
+  - stylua.toml
+  - .busted
+  - .luacheckrc
+  - .github
