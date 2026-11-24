@@ -90,7 +90,13 @@ end
 
 local function Apply(id)
     local descriptor, state = descriptors[id], states[id]
-    if state.skinned or state.failed or not ns.DB.IsWindowEnabled(id) then
+    if state.skinned or state.failed or state.manager or not ns.DB.IsWindowEnabled(id) then
+        return
+    end
+    local manager = ns.Compat.ManagerOf(id)
+    if manager then
+        state.manager = manager
+        ns.Print(ns.L.SKIN_SKIPPED:format(id, manager), "skipped:" .. id)
         return
     end
     -- A frame missing on this client build leaves the stock window alone instead of erroring.
@@ -124,21 +130,13 @@ local function Apply(id)
     end
 end
 
-local function IsAddOnLoaded(name)
-    if not (C_AddOns and C_AddOns.IsAddOnLoaded) then
-        return false
-    end
-    local _, finished = C_AddOns.IsAddOnLoaded(name)
-    return finished == true
-end
-
 -- Called at login. Load-on-demand windows whose addon is not loaded yet wait for
 -- Windows.OnAddonLoaded.
 function Windows.Start()
     started = true
     for index = 1, #order do
         local descriptor = descriptors[order[index]]
-        if not descriptor.loadOnDemand or IsAddOnLoaded(descriptor.loadOnDemand) then
+        if not descriptor.loadOnDemand or ns.Compat.IsAddOnLoaded(descriptor.loadOnDemand) then
             Apply(descriptor.id)
         end
     end
@@ -168,8 +166,15 @@ function Windows.Status()
             status = "skinned"
         elseif not ns.DB.IsWindowEnabled(id) then
             status = "disabled"
+        elseif state.manager then
+            status = "skipped"
         end
-        report[index] = { id = id, status = status, error = state.error }
+        report[index] = {
+            id = id,
+            status = status,
+            error = state.error,
+            manager = state.manager,
+        }
     end
     return report
 end

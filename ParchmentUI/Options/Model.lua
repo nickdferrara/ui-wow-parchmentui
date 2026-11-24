@@ -3,8 +3,6 @@ local ADDON_NAME, ns = ...
 local Options = {}
 ns.Options = Options
 
-local DIALOGUE_UI_ADDON = "DialogueUI"
-
 -- Options are addressed by a short name, which is also the slash command word. Numbers marked
 -- percent are stored as a fraction and shown to the player as a percentage.
 local DEFINITIONS = {
@@ -26,17 +24,10 @@ Options.ERROR_UNAVAILABLE = "unavailable"
 local TOGGLE_WORDS = { on = true, off = false }
 local listeners = {}
 
-local function IsDialogueUILoaded()
-    if not (C_AddOns and C_AddOns.IsAddOnLoaded) then
-        return false
-    end
-    local _, finished = C_AddOns.IsAddOnLoaded(DIALOGUE_UI_ADDON)
-    return finished == true
-end
-
 -- Matching Dialogue UI is only offered while that addon is loaded.
 local function IsChoiceAvailable(name, choice)
-    return not (name == "theme" and choice == ns.Theme.MATCH_DIALOGUE_UI) or IsDialogueUILoaded()
+    return not (name == "theme" and choice == ns.Theme.MATCH_DIALOGUE_UI)
+        or ns.Compat.IsDialogueUILoaded()
 end
 
 local function Contains(list, value)
