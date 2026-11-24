@@ -26,6 +26,15 @@ Copy the `ParchmentUI` folder into `_forever_/Interface/AddOns/` and `/reload`. 
 `/pui options`, `/pui <setting> <value>`, `/pui window <name> on|off`, `/pui status`,
 `/pui audit`, `/pui reset`.
 
+## Artwork
+
+The textures in `ParchmentUI/Art` are placeholders drawn by `art/generate_textures.py`. They
+are near-white with an alpha channel and are tinted with theme colors in game. To regenerate:
+
+```
+python3 art/generate_textures.py
+```
+
 ## Credits
 
 - Typeface: [EB Garamond](https://github.com/octaviopardo/EBGaramond12) by Georg Duffner and
