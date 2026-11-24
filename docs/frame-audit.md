@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | Not started. Nothing below has been confirmed in the live client. |
+| Status | Documentation review done on 2026-11-24. Nothing has been confirmed in the live client yet. |
 | Client build | To be recorded |
 | Audited on | To be recorded |
 
@@ -27,28 +27,42 @@ confirmed, no window module is written against it.
 
 ## Client facts to confirm
 
-| Question | Source of the current assumption | Result |
+The "Documentation" column records what warcraft.wiki.gg said on 2026-11-24, mainly the
+[TOC format](https://warcraft.wiki.gg/wiki/TOC_format) page and the
+[Patch 1.60.1 API changes](https://warcraft.wiki.gg/wiki/Patch_1.60.1/API_changes) page. The
+"In game" column stays empty until the fact has been seen in the live client. Documentation is
+evidence, not confirmation.
+
+| Question | Documentation | In game |
 |---|---|---|
-| Is `ParchmentUI_Camelot.toc` loaded? | Release packager recognises the suffix | |
-| Is `ParchmentUI_Forever.toc` honored as well? | Community notes | |
-| Is `[AllowLoadGameType camelot]` honored per file? | Community notes | |
-| Interface number reported by the client | PRD: 16001 | |
-| `WOW_PROJECT_ID` value | PRD: 18 | |
-| Does `UIPanelWindows` exist, and which area does each window use? | Mainline code family | |
-| Does `C_AddOns.IsAddOnLoaded` exist? | Mainline code family | |
-| Does `Settings.RegisterAddOnCategory` exist? | Mainline code family | |
-| Is the Addon Compartment present? | Mainline code family | |
+| Is `ParchmentUI_Camelot.toc` loaded? | Yes. `_Camelot` is the TOC suffix for the game type. | |
+| Is `ParchmentUI_Forever.toc` honored as well? | Yes. `forever` was added as an alias of `camelot` in build 70291, for both the game type and the TOC suffix. A footnote says `Camelot` may be renamed to `Forever` later. | |
+| Is `[AllowLoadGameType camelot]` honored per file? | Yes, inline directives are supported on Forever. Clients that do not know `camelot` treat the allow list as satisfied, so it must be paired with `[ExcludeLoadGameType standard, classic]`. The TOC does this. | |
+| Interface number reported by the client | `16001` for 1.60.1. The documented range check is above 16000 and below 20000. | |
+| `WOW_PROJECT_ID` value | `WOW_PROJECT_CAMELOT` is 18, added in build 70170. | |
+| Code base | 1.60.1 "includes all Modern changes up to 12.1.5", so mainline APIs apply unless the change list removes them. | |
+| Does `UIPanelWindows` exist, and which area does each window use? | Not documented for Forever. `ShowUIPanel` is not in the removed list. | |
+| Does `C_AddOns.IsAddOnLoaded` exist? | Documented as `loadedOrLoading, loaded = C_AddOns.IsAddOnLoaded(name)`. Not in the removed list. | |
+| Does `Settings.RegisterAddOnCategory` exist? | Part of the Settings API since 10.0.0, changed in 11.0.2. Not in the removed list. | |
+| Is the Addon Compartment present? | Yes. The TOC page marks the `AddonCompartmentFunc` directives as supported on Forever. | |
+| Does `SetTextureSliceMargins` exist? | Added to textures in 10.2.0. No widget methods were removed in 1.60.1. | |
+| Does calling `ShowUIPanel` from addon code cause problems? | It is protected in combat since 8.2.0: an addon call shows "action blocked". This supports the rule that the addon never opens panels itself. | |
 
 ## Frames
 
+The "Notes" column holds what the 1.60.1 API change list implies. It lists functions that were
+added and removed, not frames, so each frame name below is still an inference.
+
 | Window | Expected frame | Load on demand | Exists | Protected | Size | Panel area | Notes |
 |---|---|---|---|---|---|---|---|
-| Character Sheet | `CharacterFrame` | | | | | | |
-| Paper doll | `PaperDollFrame` | | | | | | |
-| Spellbook and Talents | `PlayerSpellsFrame` | `Blizzard_PlayerSpells` | | | | | |
-| Group Finder | `LFDFrame` | | | | | | |
-| Group Finder | `LFGFrame` | | | | | | |
-| Skills | `SkillsFrame` | | | | | | |
+| Character Sheet | `CharacterFrame` | | | | | | `CharacterFrame_GetTab` was added, so the frame is present with changed tabs. |
+| Paper doll | `PaperDollFrame` | | | | | | Many `PaperDollFrame_Set...` stat functions and an ammo slot were added. Expect a Classic-style stat layout plus a sidebar. |
+| Spellbook and Talents | `PlayerSpellsFrame` | `Blizzard_PlayerSpells` | | | | | Nothing named `PlayerSpells` was removed. New `C_SpellBook` functions mention low spell ranks. |
+| Group Finder | `LFGParentFrame` | | | | | | Most likely candidate. `LFGParentFrame`, `LFGListing` and `LFGBrowse` functions were added with `ToggleGroupFinderFrame` and `GroupFinderVanillaStyle_LoadUI`, which suggests it is load on demand. |
+| Group Finder | `LFGListingFrame`, `LFGBrowseFrame` | | | | | | Likely the tabs inside `LFGParentFrame`. |
+| Group Finder | `LFDFrame`, `PVEFrame`, `GroupFinderFrame` | | | | | | Functions for all three were removed. Do not expect these frames. |
+| Skills | `SkillsFrame` | | | | | | `PaperDollFrame_SetWeaponSkill` was added. `ProfessionsBookFrame` functions were removed. |
+| Legacy System | To be identified | | | | | | `ToggleLegacySystemUI` was added. This is Forever's replacement for achievements and is not in the PRD window list. |
 | Social | `SocialUIFrame` | | | | | | |
 | Social | `FriendsFrame` | | | | | | |
 | Merchant | `MerchantFrame` | | | | | | |

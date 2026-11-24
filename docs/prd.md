@@ -45,7 +45,9 @@ that gap.
 ## 4. Target platform
 
 Facts below were gathered on 2026-11-24. Items marked *unverified* come from community sources
-and must be confirmed in the live client during Milestone 0.
+and must be confirmed in the live client during Milestone 0. Items marked *documented* were
+checked against warcraft.wiki.gg on the same date and still need confirming in the client. The
+details are in `docs/frame-audit.md`.
 
 | Item | Value |
 |---|---|
@@ -53,13 +55,15 @@ and must be confirmed in the live client during Milestone 0.
 | Interface | `16001` (client 1.60.1) |
 | Game type | `camelot`, with `forever` accepted as an alias |
 | Code family | Mainline (shared with Midnight), with Forever overrides |
-| `WOW_PROJECT_ID` | `WOW_PROJECT_CAMELOT` (18) *unverified* |
+| `WOW_PROJECT_ID` | `WOW_PROJECT_CAMELOT` (18) *documented* |
 | Detection rule | Interface in 16000 to 16999. Do not test for `>= 100000`. |
 
 TOC requirements:
 
-- Ship `ParchmentUI_Camelot.toc` *(unverified whether `_Forever.toc` is also honored; test both)*.
-- Gate files with `[AllowLoadGameType camelot]` so the addon stays inert on other clients.
+- Ship `ParchmentUI_Camelot.toc`. `_Forever.toc` is *documented* as an alias; test both.
+- Gate files with `[AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]` so the
+  addon stays inert on other clients. The exclusion is needed because clients that do not know
+  `camelot` treat the allow list as satisfied.
 - `## Interface: 16001`
 - `## OptionalDeps: DialogueUI`
 - `## SavedVariables: ParchmentUI_DB`
@@ -122,7 +126,7 @@ in `docs/frame-audit.md`.
 | P0 | Character Sheet | `CharacterFrame`, `PaperDollFrame` | Includes reputation and currency tabs |
 | P0 | Spellbook | `PlayerSpellsFrame` | Load on demand (`Blizzard_PlayerSpells`) |
 | P0 | Talents | `PlayerSpellsFrame.TalentsFrame` | Uses `C_Traits`; legacy panel unlocks at level 25 |
-| P0 | Group Finder / LFG | `LFDFrame` or `LFGFrame` | Reported as a vanilla-style group finder |
+| P0 | Group Finder / LFG | `LFGParentFrame` | Vanilla-style group finder. `LFDFrame` functions were removed in 1.60.1 *(documented)* |
 | P1 | Skills / Professions list | `SkillsFrame` | |
 | P1 | Social | `SocialUIFrame`, `FriendsFrame` | Forever replaces part of the Friends window |
 | P1 | Quest Log | To be identified | |
