@@ -101,3 +101,22 @@ function Skin.ColorGameText(fontString, theme, red, green, blue)
     local color = ns.Palette.Legible({ red, green, blue }, theme.colors.surface)
     return SetTextColor(fontString, color)
 end
+
+-- Sets the typeface and size for a theme role, keeping the outline flags the text already
+-- had. Where the client font is kept for the locale, only the size changes.
+function Skin.SetFont(fontString, theme, role, baseSize)
+    if
+        type(fontString) ~= "table"
+        or type(fontString.GetFont) ~= "function"
+        or type(fontString.SetFont) ~= "function"
+    then
+        return false
+    end
+    local currentPath, _, flags = fontString:GetFont()
+    local path = ns.Fonts.Path(role) or currentPath
+    if not path then
+        return false
+    end
+    fontString:SetFont(path, ns.Fonts.Size(baseSize, theme), flags or "")
+    return true
+end

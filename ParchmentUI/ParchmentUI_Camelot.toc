@@ -18,6 +18,7 @@ Core/Startup.lua [AllowLoadGameType camelot]
 Locales/enUS.lua [AllowLoadGameType camelot]
 
 Theme/Palette.lua [AllowLoadGameType camelot]
+Theme/Fonts.lua [AllowLoadGameType camelot]
 Theme/Textures.lua [AllowLoadGameType camelot]
 Theme/Theme.lua [AllowLoadGameType camelot]
 

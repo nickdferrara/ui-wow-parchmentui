@@ -25,3 +25,9 @@ make package   build the release zip into .release/
 Copy the `ParchmentUI` folder into `_forever_/Interface/AddOns/` and `/reload`. Commands:
 `/pui options`, `/pui <setting> <value>`, `/pui window <name> on|off`, `/pui status`,
 `/pui audit`, `/pui reset`.
+
+## Credits
+
+- Typeface: [EB Garamond](https://github.com/octaviopardo/EBGaramond12) by Georg Duffner and
+  Octavio Pardo, under the SIL Open Font License 1.1. The license is in `ParchmentUI/Fonts/OFL.txt`.
+- Visual inspiration: Dialogue UI by Peterodox and Raenore. No code or artwork from it is used.

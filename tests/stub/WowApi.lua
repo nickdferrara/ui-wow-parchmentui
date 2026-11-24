@@ -8,6 +8,7 @@ local GLOBALS = {
     "CreateFrame",
     "InCombatLockdown",
     "GetBuildInfo",
+    "GetLocale",
     "C_AddOns",
     "geterrorhandler",
     "SlashCmdList",
@@ -95,6 +96,7 @@ function Stub.Install(options)
     local state = {
         inCombat = false,
         interface = options.interface or 16001,
+        locale = "enUS",
         loadedAddons = {},
         frames = {},
         errors = {},
@@ -112,6 +114,9 @@ function Stub.Install(options)
     end
     _G.GetBuildInfo = function()
         return "1.60.1", "99999", "Nov 24 2026", state.interface
+    end
+    _G.GetLocale = function()
+        return state.locale
     end
     _G.C_AddOns = {
         IsAddOnLoaded = function(name)
