@@ -23,4 +23,5 @@ make package   build the release zip into .release/
 ## Trying it in game
 
 Copy the `ParchmentUI` folder into `_forever_/Interface/AddOns/` and `/reload`. Commands:
-`/pui status`, `/pui audit`, `/pui reset`.
+`/pui options`, `/pui <setting> <value>`, `/pui window <name> on|off`, `/pui status`,
+`/pui audit`, `/pui reset`.

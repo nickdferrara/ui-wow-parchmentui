@@ -23,4 +23,5 @@ Theme/Theme.lua [AllowLoadGameType camelot]
 Layout/Dock.lua [AllowLoadGameType camelot]
 
 Options/Audit.lua [AllowLoadGameType camelot]
+Options/Model.lua [AllowLoadGameType camelot]
 Options/Slash.lua [AllowLoadGameType camelot]

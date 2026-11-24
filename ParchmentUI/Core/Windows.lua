@@ -37,6 +37,10 @@ function Windows.Register(descriptor)
     states[id] = { skinned = false, failed = false }
 end
 
+function Windows.IsRegistered(id)
+    return descriptors[id] ~= nil
+end
+
 -- A failing window is switched off for the session so its stock frame keeps working.
 local function Fail(id, err)
     local state = states[id]
