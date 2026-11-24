@@ -21,6 +21,7 @@ Theme/Textures.lua [AllowLoadGameType camelot]
 Theme/Theme.lua [AllowLoadGameType camelot]
 
 Layout/Dock.lua [AllowLoadGameType camelot]
+Layout/Tracker.lua [AllowLoadGameType camelot]
 
 Options/Audit.lua [AllowLoadGameType camelot]
 Options/Model.lua [AllowLoadGameType camelot]

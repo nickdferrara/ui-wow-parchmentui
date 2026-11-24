@@ -17,6 +17,7 @@ files["ParchmentUI"] = {
         "GetBuildInfo",
         "InCombatLockdown",
         "UIPanelWindows",
+        "UIParent",
         "WOW_PROJECT_ID",
         "geterrorhandler",
     },
