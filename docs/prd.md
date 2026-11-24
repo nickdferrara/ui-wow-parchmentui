@@ -125,11 +125,12 @@ in `docs/frame-audit.md`.
 |---|---|---|---|
 | P0 | Character Sheet | `CharacterFrame`, `PaperDollFrame` | Includes reputation and currency tabs |
 | P0 | Spellbook | `PlayerSpellsFrame` | Load on demand (`Blizzard_PlayerSpells`) |
-| P0 | Talents | `PlayerSpellsFrame.TalentsFrame` | Uses `C_Traits`; legacy panel unlocks at level 25 |
+| P0 | Talents | `PlayerSpellsFrame.TalentsFrame` | Uses `C_Traits` |
 | P0 | Group Finder / LFG | `LFGParentFrame` | Vanilla-style group finder. `LFDFrame` functions were removed in 1.60.1 *(documented)* |
 | P1 | Skills / Professions list | `SkillsFrame` | |
 | P1 | Social | `SocialUIFrame`, `FriendsFrame` | Forever replaces part of the Friends window |
 | P1 | Quest Log | To be identified | |
+| P1 | Legacy System | `LegacySystemFrame` | Forever's replacement for achievements. Load on demand. Unlocks with the first Legacy Point, likely at level 25. Its Trees section is a separate talent-style tree *(documented)* |
 | P2 | Merchant, Bank, Mail | `MerchantFrame`, `BankFrame`, `MailFrame` | |
 | P2 | Professions crafting, Auction House | To be identified | |
 
@@ -264,7 +265,7 @@ Repository conventions:
 | M3 | Group Finder | LFG window skinned and docked. |
 | M4 | Settings and polish | Options panel, themes, animation, Dialogue UI theme matching, multi-window stacking. |
 | M5 | Release 1.0 | P0 windows pass the full acceptance checklist. Published. |
-| M6 | P1 and P2 windows | Skills, Social, Quest Log, then Merchant, Bank, Mail and the rest. |
+| M6 | P1 and P2 windows | Skills, Social, Quest Log, Legacy System, then Merchant, Bank, Mail and the rest. |
 
 ## 12. Acceptance checklist (run in the live client per release)
 

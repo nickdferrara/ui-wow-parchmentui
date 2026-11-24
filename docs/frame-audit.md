@@ -62,7 +62,7 @@ added and removed, not frames, so each frame name below is still an inference.
 | Group Finder | `LFGListingFrame`, `LFGBrowseFrame` | | | | | | Likely the tabs inside `LFGParentFrame`. |
 | Group Finder | `LFDFrame`, `PVEFrame`, `GroupFinderFrame` | | | | | | Functions for all three were removed. Do not expect these frames. |
 | Skills | `SkillsFrame` | | | | | | `PaperDollFrame_SetWeaponSkill` was added. `ProfessionsBookFrame` functions were removed. |
-| Legacy System | To be identified | | | | | | `ToggleLegacySystemUI` was added. This is Forever's replacement for achievements and is not in the PRD window list. |
+| Legacy System | `LegacySystemFrame` | Yes, addon name unknown | | | | | `ToggleLegacySystemUI` and `LegacySystemFrame_LoadUI` were added. Forever's replacement for achievements, with Rewards, Challenges and Trees sections. Unlocks with the first Legacy Point, likely at level 25, so audit it on a character that has one. P1 in the PRD. |
 | Social | `SocialUIFrame` | | | | | | |
 | Social | `FriendsFrame` | | | | | | |
 | Merchant | `MerchantFrame` | | | | | | |

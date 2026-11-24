@@ -16,6 +16,7 @@ Audit.CANDIDATES = {
     { frameName = "LFDFrame" },
     { frameName = "PVEFrame" },
     { frameName = "SkillsFrame" },
+    { frameName = "LegacySystemFrame" },
     { frameName = "SocialUIFrame" },
     { frameName = "FriendsFrame" },
     { frameName = "MerchantFrame" },
