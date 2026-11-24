@@ -20,8 +20,48 @@ local GLOBALS = {
     "WOW_PROJECT_ID",
 }
 
+-- An object that accepts any method call and remembers the last arguments of each. Names in
+-- missing are absent, for testing a client build that lacks them.
+local function Recorder(fields, missing)
+    local object = fields or {}
+    object.last = {}
+    return setmetatable(object, {
+        __index = function(_, method)
+            if missing and missing[method] then
+                return nil
+            end
+            return function(self, ...)
+                self.last[method] = { ... }
+            end
+        end,
+    })
+end
+
+-- Frames implement the methods whose behaviour tests rely on and record every other call.
 local Frame = {}
-Frame.__index = Frame
+Frame.__index = function(_, key)
+    local method = Frame[key]
+    if method ~= nil then
+        return method
+    end
+    if type(key) == "string" and key:match("^%u") then
+        return function(self, ...)
+            self.last[key] = { ... }
+        end
+    end
+    return nil
+end
+
+function Frame:SetSize(width, height)
+    self.width, self.height = width, height
+end
+
+function Frame:CreateFontString(_, layer)
+    local text = Recorder({ layer = layer })
+    self.fontStrings = self.fontStrings or {}
+    table.insert(self.fontStrings, text)
+    return text
+end
 
 function Frame:RegisterEvent(event)
     self.events[event] = true
@@ -68,21 +108,9 @@ function Frame:GetHeight()
     return self.height
 end
 
--- Textures record the last arguments of every method called on them. Names listed in
--- frame.missingTextureMethods are absent, for testing a client build that lacks them.
+-- Names listed in frame.missingTextureMethods are absent from the textures it creates.
 function Frame:CreateTexture(_, layer, _, sublevel)
-    local missing = self.missingTextureMethods or {}
-    local texture = { last = {}, layer = layer, sublevel = sublevel }
-    setmetatable(texture, {
-        __index = function(_, method)
-            if missing[method] then
-                return nil
-            end
-            return function(object, ...)
-                object.last[method] = { ... }
-            end
-        end,
-    })
+    local texture = Recorder({ layer = layer, sublevel = sublevel }, self.missingTextureMethods)
     self.textures = self.textures or {}
     table.insert(self.textures, texture)
     return texture
@@ -101,7 +129,7 @@ function Frame:GetSize()
 end
 
 function Stub.NewFrame(fields)
-    local frame = setmetatable({ events = {}, scripts = {}, shown = false }, Frame)
+    local frame = setmetatable({ events = {}, scripts = {}, shown = false, last = {} }, Frame)
     frame.protected = false
     frame.width, frame.height = 0, 0
     for key, value in pairs(fields or {}) do
@@ -124,8 +152,8 @@ function Stub.Install(options)
         realPrint = _G.print,
     }
 
-    _G.CreateFrame = function()
-        local frame = Stub.NewFrame()
+    _G.CreateFrame = function(frameType, _, parent)
+        local frame = Stub.NewFrame({ frameType = frameType, parent = parent })
         table.insert(state.frames, frame)
         return frame
     end

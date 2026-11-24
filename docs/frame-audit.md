@@ -19,7 +19,10 @@ confirmed, no window module is written against it.
    `/pui audit` again.
 5. For each window, open it and run `/fstack` to find the frame under the cursor. Record the
    top-level frame, its tabs and its child regions that carry stock art.
-6. Confirm that both `/pui` and `/parchment` respond. If the addon does not load at all, check
+6. Run `/pui preview`. A sample scroll should unroll at the right edge. Note whether the
+   parchment, the rolled ends and the typeface appear, then try `/pui theme dark`,
+   `/pui side left` and `/pui font 150` while it is open.
+7. Confirm that both `/pui` and `/parchment` respond. If the addon does not load at all, check
    the TOC questions below first.
 
 ## Client facts to confirm
