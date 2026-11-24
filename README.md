@@ -4,7 +4,8 @@ An addon for World of Warcraft: Forever that restyles the main game windows as p
 scrolls docked to the side of the screen, so they sit naturally next to
 [Dialogue UI](https://www.curseforge.com/wow/addons/dialogueui).
 
-Status: Milestone 0 (foundation). No window is skinned yet.
+Status: Milestone 0 (foundation). No game window is skinned yet. `/pui preview` shows a sample
+scroll with the current artwork, typeface and docking.
 
 - [Product requirements](docs/prd.md)
 - [Engineering standards](docs/engineering-standards.md)
@@ -23,8 +24,8 @@ make package   build the release zip into .release/
 ## Trying it in game
 
 Copy the `ParchmentUI` folder into `_forever_/Interface/AddOns/` and `/reload`. Commands:
-`/pui options`, `/pui <setting> <value>`, `/pui window <name> on|off`, `/pui status`,
-`/pui audit`, `/pui reset`.
+`/pui preview`, `/pui options`, `/pui <setting> <value>`, `/pui window <name> on|off`,
+`/pui status`, `/pui audit`, `/pui reset`.
 
 ## Artwork
 
