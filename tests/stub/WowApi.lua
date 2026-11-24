@@ -15,6 +15,7 @@ local GLOBALS = {
     "SLASH_PARCHMENTUI2",
     "ParchmentUI_DB",
     "UIPanelWindows",
+    "UIParent",
     "WOW_PROJECT_ID",
 }
 
@@ -51,6 +52,19 @@ end
 function Frame:Show()
     self.shown = true
     self:Run("OnShow")
+end
+
+function Frame:Hide()
+    self.shown = false
+    self:Run("OnHide")
+end
+
+function Frame:GetWidth()
+    return self.width
+end
+
+function Frame:GetHeight()
+    return self.height
 end
 
 function Frame:IsProtected()

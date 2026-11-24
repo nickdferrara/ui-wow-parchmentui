@@ -87,5 +87,3 @@ function Dock.Options()
         scale = ns.DB.Get("scale"),
     }
 end
-
-ns.Windows.SetDockProvider(Dock.Options)

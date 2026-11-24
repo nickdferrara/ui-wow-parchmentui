@@ -12,6 +12,7 @@ local started = false
 -- reaches into a later module.
 local GetTheme = function() end
 local GetDock = function() end
+local OnVisibility = function() end
 
 function Windows.SetThemeProvider(provider)
     GetTheme = provider
@@ -19,6 +20,11 @@ end
 
 function Windows.SetDockProvider(provider)
     GetDock = provider
+end
+
+-- Called with a window id and whether it is now shown, before that window is laid out.
+function Windows.SetVisibilityListener(listener)
+    OnVisibility = listener
 end
 
 function Windows.Register(descriptor)
@@ -35,6 +41,14 @@ function Windows.Register(descriptor)
     descriptors[id] = descriptor
     order[#order + 1] = id
     states[id] = { skinned = false, failed = false }
+end
+
+-- Returns the Blizzard frame of a window whose skin is applied and working, or nil.
+function Windows.GetFrame(id)
+    local descriptor, state = descriptors[id], states[id]
+    if descriptor and state.skinned and not state.failed then
+        return _G[descriptor.frameName]
+    end
 end
 
 function Windows.IsRegistered(id)
@@ -68,7 +82,7 @@ function Windows.RequestLayout(id)
         local frame = _G[descriptor.frameName]
         if frame and not state.failed then
             Guarded(id, function()
-                descriptor.Layout(frame, GetDock())
+                descriptor.Layout(frame, GetDock(id, frame))
             end)
         end
     end, "layout:" .. id)
@@ -92,11 +106,20 @@ local function Apply(id)
     end
     state.skinned = true
     if descriptor.Layout then
-        frame:HookScript("OnShow", function()
+        local function Shown()
+            Guarded(id, function()
+                OnVisibility(id, true)
+            end)
             Windows.RequestLayout(id)
+        end
+        frame:HookScript("OnShow", Shown)
+        frame:HookScript("OnHide", function()
+            Guarded(id, function()
+                OnVisibility(id, false)
+            end)
         end)
         if frame:IsShown() then
-            Windows.RequestLayout(id)
+            Shown()
         end
     end
 end
