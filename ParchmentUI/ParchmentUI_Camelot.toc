@@ -1,0 +1,26 @@
+## Interface: 16001
+## Title: ParchmentUI
+## Notes: Restyles the main game windows as parchment scrolls docked to the side of the screen.
+## Author: nickdferrara
+## Version: @project-version@
+## OptionalDeps: DialogueUI
+## SavedVariables: ParchmentUI_DB
+
+Core/Init.lua [AllowLoadGameType camelot]
+Core/Defaults.lua [AllowLoadGameType camelot]
+Core/Database.lua [AllowLoadGameType camelot]
+Core/Events.lua [AllowLoadGameType camelot]
+Core/Combat.lua [AllowLoadGameType camelot]
+Core/Windows.lua [AllowLoadGameType camelot]
+Core/Startup.lua [AllowLoadGameType camelot]
+
+Locales/enUS.lua [AllowLoadGameType camelot]
+
+Theme/Palette.lua [AllowLoadGameType camelot]
+Theme/Textures.lua [AllowLoadGameType camelot]
+Theme/Theme.lua [AllowLoadGameType camelot]
+
+Layout/Dock.lua [AllowLoadGameType camelot]
+
+Options/Audit.lua [AllowLoadGameType camelot]
+Options/Slash.lua [AllowLoadGameType camelot]

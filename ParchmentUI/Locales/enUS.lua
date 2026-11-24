@@ -1,0 +1,26 @@
+local ADDON_NAME, ns = ...
+
+local L = ns.L
+
+L.SKIN_FAILED = "The %s window skin hit an error and is off until the next reload."
+L.HELP_HEADER = "Commands:"
+L.HELP_STATUS = "/pui status - list window skins and their state"
+L.HELP_AUDIT = "/pui audit - report the client build and candidate frames"
+L.HELP_RESET = "/pui reset - restore default settings"
+L.RESET_DONE = "Settings restored to defaults. Type /reload to apply them."
+L.STATUS_HEADER = "Window skins:"
+L.STATUS_NONE = "No window skins are registered yet."
+L.STATUS_LINE = "%s: %s"
+L.STATUS_LINE_ERROR = "%s: %s (%s)"
+L.STATUS_SKINNED = "skinned"
+L.STATUS_FAILED = "failed"
+L.STATUS_DISABLED = "disabled"
+L.STATUS_WAITING = "waiting for its frame"
+L.AUDIT_BUILD = "Client %s build %s, interface %s, project id %s"
+L.AUDIT_PANEL_MANAGER = "UIPanelWindows table: %s"
+L.AUDIT_MISSING = "%s: missing"
+L.AUDIT_FRAME = "%s: %s, %dx%d, protected=%s, shown=%s, panel area=%s"
+L.AUDIT_NOT_LOADED = "%s: missing (%s not loaded)"
+L.AUDIT_YES = "yes"
+L.AUDIT_NO = "no"
+L.AUDIT_UNKNOWN = "unknown"
