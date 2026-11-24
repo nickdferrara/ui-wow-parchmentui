@@ -23,6 +23,7 @@ Theme/Textures.lua [AllowLoadGameType camelot]
 Theme/Theme.lua [AllowLoadGameType camelot]
 
 Skin/Regions.lua [AllowLoadGameType camelot]
+Skin/Scroll.lua [AllowLoadGameType camelot]
 Skin/Animation.lua [AllowLoadGameType camelot]
 
 Layout/Dock.lua [AllowLoadGameType camelot]

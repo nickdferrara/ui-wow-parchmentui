@@ -68,6 +68,26 @@ function Frame:GetHeight()
     return self.height
 end
 
+-- Textures record the last arguments of every method called on them. Names listed in
+-- frame.missingTextureMethods are absent, for testing a client build that lacks them.
+function Frame:CreateTexture(_, layer, _, sublevel)
+    local missing = self.missingTextureMethods or {}
+    local texture = { last = {}, layer = layer, sublevel = sublevel }
+    setmetatable(texture, {
+        __index = function(_, method)
+            if missing[method] then
+                return nil
+            end
+            return function(object, ...)
+                object.last[method] = { ... }
+            end
+        end,
+    })
+    self.textures = self.textures or {}
+    table.insert(self.textures, texture)
+    return texture
+end
+
 function Frame:IsProtected()
     return self.protected
 end
