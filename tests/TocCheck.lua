@@ -1,10 +1,13 @@
 -- Validates the TOC against the file tree:
 --   every file it lists exists, every Lua file under the addon folder is listed, every file
---   is gated to the Forever game type, and the Interface number matches the standards.
+--   is gated to the Forever game type and excluded from the others, and the Interface number
+--   matches the standards.
 local ADDON_ROOT = "ParchmentUI/"
 local TOC_PATH = ADDON_ROOT .. "ParchmentUI_Camelot.toc"
 local STANDARDS_PATH = "docs/engineering-standards.md"
-local GAME_TYPE_GATE = "[AllowLoadGameType camelot]"
+-- Clients that do not know the camelot game type treat an allow list they cannot match as
+-- satisfied, so every file also has to exclude the game types those clients do know.
+local GAME_TYPE_GATE = "[AllowLoadGameType camelot][ExcludeLoadGameType standard, classic]"
 
 local problems = {}
 
