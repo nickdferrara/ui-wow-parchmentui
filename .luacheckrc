@@ -15,6 +15,7 @@ files["ParchmentUI"] = {
         "C_AddOns",
         "CreateFrame",
         "GetBuildInfo",
+        "GetLocale",
         "InCombatLockdown",
         "UIPanelWindows",
         "UIParent",
