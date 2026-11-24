@@ -62,7 +62,7 @@ added and removed, not frames, so each frame name below is still an inference.
 | Group Finder | `LFGListingFrame`, `LFGBrowseFrame` | | | | | | Likely the tabs inside `LFGParentFrame`. |
 | Group Finder | `LFDFrame`, `PVEFrame`, `GroupFinderFrame` | | | | | | Functions for all three were removed. Do not expect these frames. |
 | Skills | `SkillsFrame` | | | | | | `PaperDollFrame_SetWeaponSkill` was added. `ProfessionsBookFrame` functions were removed. |
-| Legacy System | To be identified | | | | | | `ToggleLegacySystemUI` was added. This is Forever's replacement for achievements and is not in the PRD window list. |
+| Legacy System | To be identified | | | | | | `ToggleLegacySystemUI` was added. This is Forever's replacement for achievements. P1 in the PRD. Find its frame with `/fstack`. |
 | Social | `SocialUIFrame` | | | | | | |
 | Social | `FriendsFrame` | | | | | | |
 | Merchant | `MerchantFrame` | | | | | | |

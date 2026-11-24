@@ -130,6 +130,7 @@ in `docs/frame-audit.md`.
 | P1 | Skills / Professions list | `SkillsFrame` | |
 | P1 | Social | `SocialUIFrame`, `FriendsFrame` | Forever replaces part of the Friends window |
 | P1 | Quest Log | To be identified | |
+| P1 | Legacy System | To be identified | Forever's replacement for achievements, opened by `ToggleLegacySystemUI` *(documented)* |
 | P2 | Merchant, Bank, Mail | `MerchantFrame`, `BankFrame`, `MailFrame` | |
 | P2 | Professions crafting, Auction House | To be identified | |
 
@@ -264,7 +265,7 @@ Repository conventions:
 | M3 | Group Finder | LFG window skinned and docked. |
 | M4 | Settings and polish | Options panel, themes, animation, Dialogue UI theme matching, multi-window stacking. |
 | M5 | Release 1.0 | P0 windows pass the full acceptance checklist. Published. |
-| M6 | P1 and P2 windows | Skills, Social, Quest Log, then Merchant, Bank, Mail and the rest. |
+| M6 | P1 and P2 windows | Skills, Social, Quest Log, Legacy System, then Merchant, Bank, Mail and the rest. |
 
 ## 12. Acceptance checklist (run in the live client per release)
 
